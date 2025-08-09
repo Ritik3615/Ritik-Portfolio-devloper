@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import image from "../assets/portfoliopic.jpg"; // Adjust the path as necessary
 
 
 const headingText = "About Me";
 
-export default function About() {
-  const image = "/public/portfoliopic.jpg"; 
+export default function About() { 
   const [displayedText, setDisplayedText] = useState("");
   const [typing, setTyping] = useState(true);
   const [index, setIndex] = useState(0);
