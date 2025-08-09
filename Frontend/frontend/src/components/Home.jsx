@@ -78,7 +78,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-base md:text-lg text-gray-400 max-w-xl leading-relaxed"
+          className="text-base md:text-lg text-black max-w-xl leading-relaxed"
         >
           I build high-performance, scalable, and user-friendly web applications. From responsive front-ends to efficient back-ends, I bring ideas to life with modern tools and clean, maintainable code. I focus on delivering solutions that not only meet business goals but also enhance user experience, follow industry best practices, and remain adaptable for future growth.
         </motion.p>
