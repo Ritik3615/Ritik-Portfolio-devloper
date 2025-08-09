@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import laptopImage from "../assets/Tech Desktop Wallpaper.jpeg";
+import resume from "../assets/Full-stack-ritik.pdf";
 
 const fullName = "Ritik Kumar";
 
@@ -90,7 +91,7 @@ export default function Home() {
           className="space-x-4"
         >
           <a
-            href="/resume.pdf"
+            href={resume}
             download
             className="bg-blue-500 px-6 py-2 rounded-lg text-base font-semibold hover:bg-blue-600 transition"
           >
@@ -100,7 +101,7 @@ export default function Home() {
             href="#contact"
             className="bg-gray-700 px-6 py-2 rounded-lg text-base font-semibold hover:bg-gray-600 transition"
           >
-            Contact Me
+            Hire me
           </a>
         </motion.div>
       </div>
