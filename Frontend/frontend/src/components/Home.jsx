@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import laptopImage from "../assets/Tech Desktop Wallpaper.jpeg";
-import resume from "../assets/Full-stack-Ritik.pdf";
+import resume from "../assets/Ritikkumar_softdev.pdf";
 
 const fullName = "Ritik Kumar";
 

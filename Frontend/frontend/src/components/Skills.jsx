@@ -3,14 +3,22 @@ import { useState } from "react";
 import React from "react";
 import {
   FaReact,
-  FaNodeJs,
-  FaDatabase,
   FaJsSquare,
-  FaGitAlt,
   FaHtml5,
   FaCss3Alt,
+  FaJava,
+  FaDatabase,
+  FaGitAlt,
 } from "react-icons/fa";
-import { SiExpress, SiTailwindcss, SiMongodb } from "react-icons/si";
+import {
+  SiTailwindcss,
+  SiSpringboot,
+  SiHibernate,
+  SiMysql,
+  SiLeetcode,
+  SiExpress,
+} from "react-icons/si";
+
 import certJspider from "../assets/JavaFullStack.jpg";
 import certWebTech from "../assets/Internkaksha.jpg";
 import certWalmart from "../assets/WELMART-CERTIFICATE.jpg";
@@ -19,20 +27,31 @@ import certInfosys from "../assets/Infosys.jpg";
 export default function Skills() {
   const [selectedCert, setSelectedCert] = useState(null);
 
-  const skill = [
+  // Frontend skills
+  const frontendSkills = [
     { name: "React.js", icon: <FaReact className="text-cyan-400" /> },
-    { name: "Node.js", icon: <FaNodeJs className="text-green-500" /> },
-    { name: "Express.js", icon: <SiExpress className="text-gray-300" /> },
-    { name: "MongoDB", icon: <SiMongodb className="text-green-400" /> },
     { name: "JavaScript", icon: <FaJsSquare className="text-yellow-400" /> },
     { name: "Tailwind CSS", icon: <SiTailwindcss className="text-sky-400" /> },
-    { name: "Git & GitHub", icon: <FaGitAlt className="text-red-500" /> },
     { name: "HTML5", icon: <FaHtml5 className="text-orange-500" /> },
     { name: "CSS3", icon: <FaCss3Alt className="text-blue-500" /> },
-    // { name: "Java", icon: <SiJava className="text-red-500" /> },
   ];
 
-  const skills = [
+  // Backend skills (Java stack)
+  const backendSkills = [
+    { name: "Java", icon: <FaJava className="text-red-500" /> },
+    { name: "Spring Boot", icon: <SiSpringboot className="text-green-500" /> },
+    { name: "Hibernate", icon: <SiHibernate className="text-yellow-500" /> },
+    { name: "JDBC", icon: <FaDatabase className="text-gray-400" /> },
+    { name: "Express.js", icon: <SiExpress className="text-gray-300" /> },
+    { name: "MySQL", icon: <SiMysql className="text-blue-400" /> },
+    {
+      name: "DSA (In Progress)",
+      icon: <SiLeetcode className="text-yellow-500" />,
+    },
+    { name: "Git & GitHub", icon: <FaGitAlt className="text-red-500" /> },
+  ];
+
+  const certificates = [
     {
       name: "Full Stack Java",
       company: "JSpiders",
@@ -57,9 +76,10 @@ export default function Skills() {
 
   return (
     <>
+      {/* CERTIFICATES */}
       <section
         id="skills"
-        className="min-h-screen bg-gradient-to-r from-gray-900 to-gray-300 bg-lines text-white px-8 py-6"
+        className="min-h-screen bg-gradient-to-r from-gray-900 to-gray-300 bg-lines text-white px-8 py-1"
       >
         <h2 className="text-4xl font-bold text-blue-400 mb-12 text-center">
           Skills & Certificates
@@ -75,7 +95,7 @@ export default function Skills() {
               </tr>
             </thead>
             <tbody>
-              {skills.map((skill, idx) => (
+              {certificates.map((skill, idx) => (
                 <tr
                   key={idx}
                   className="border-b border-gray-600 hover:bg-gray-800 transition"
@@ -96,7 +116,6 @@ export default function Skills() {
           </table>
         </div>
 
-        {/* Modal */}
         {selectedCert && (
           <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
             <div className="relative max-w-full max-h-full">
@@ -115,11 +134,30 @@ export default function Skills() {
           </div>
         )}
       </section>
+
+      {/* BACKEND SKILLS */}
+      <section className=" z-auto bg-gray-900 text-white bg-gradient-to-r from-gray-900 to-gray-300 bg-lines">
+        <div className="max-w-5xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-8">Frontend Skills</h2>
+          <div className="grid grid-cols-3 sm:grid-cols-5 gap-8 text-5xl justify-center">
+            {frontendSkills.map((skill) => (
+              <div
+                key={skill.name}
+                className="flex flex-col items-center space-y-2 hover:scale-110 transition-transform cursor-default"
+                title={skill.name}
+              >
+                {skill.icon}
+                <span className="text-sm mt-1">{skill.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       <section className="py-7 bg-gray-900 text-white bg-gradient-to-r from-gray-900 to-gray-300 bg-lines">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-8">My Skills</h2>
           <div className="grid grid-cols-3 sm:grid-cols-5 gap-8 text-5xl justify-center">
-            {skill.map((skill) => (
+            {backendSkills.map((skill) => (
               <div
                 key={skill.name}
                 className="flex flex-col items-center space-y-2 hover:scale-110 transition-transform cursor-default"
