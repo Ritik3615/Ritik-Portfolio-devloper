@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import fullstack from "../assets/certificates/javaFullStack.jpg";
-import infosys from "../assets/certificates/infosys.jpg";
+import fullstack from "../assets/certificates/JavaFullStack.jpg";
+import infosys from "../assets/certificates/Infosys.jpg";
 import walmart from "../assets/certificates/walmart.jpg";
 
 
