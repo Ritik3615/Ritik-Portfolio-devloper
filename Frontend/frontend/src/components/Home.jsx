@@ -1,12 +1,11 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import laptopImage from "../assets/Tech Desktop Wallpaper.jpeg";
-import resume from "../assets/Ritikkumar_softdev.pdf";
+import laptopImage from "../assets/portfolio.png";
+import resume from "../assets/Ritik_fullstack.pdf";
 
 const fullName = "Ritik Kumar";
 
 export default function Home() {
-  // typing effect (previously discussed)
   const [displayedText, setDisplayedText] = useState("");
   const [typing, setTyping] = useState(true);
   const [index, setIndex] = useState(0);
@@ -19,18 +18,18 @@ export default function Home() {
         timeout = setTimeout(() => {
           setDisplayedText(fullName.slice(0, index + 1));
           setIndex(index + 1);
-        }, 150);
+        }, 100);
       } else {
-        timeout = setTimeout(() => setTyping(false), 1000);
+        timeout = setTimeout(() => setTyping(false), 1500);
       }
     } else {
       if (index > 0) {
         timeout = setTimeout(() => {
           setDisplayedText(fullName.slice(0, index - 1));
           setIndex(index - 1);
-        }, 100);
+        }, 60);
       } else {
-        timeout = setTimeout(() => setTyping(true), 500);
+        timeout = setTimeout(() => setTyping(true), 800);
       }
     }
 
@@ -38,15 +37,14 @@ export default function Home() {
   }, [index, typing]);
 
   return (
-    <section className="relative min-h-screen flex flex-col md:flex-row items-center justify-center gap-10 px-8 bg-gradient-to-r from-gray-900 to-gray-300 bg-lines text-white overflow-hidden">
-      
-      {/* Background blinking lighting div */}
+    <section className="relative min-h-screen flex flex-col md:flex-row items-center justify-center gap-12 px-8 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
+      {/* Background Glow */}
       <div
-        className="absolute inset-0 pointer-events-none rounded-lg"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          animation: "colorBlink 10s ease-in-out infinite",
-          opacity: 0.2,
-          filter: "blur(40px)",
+          background:
+            "radial-gradient(circle at 30% 30%, rgba(59,130,246,0.15), transparent 40%), radial-gradient(circle at 70% 70%, rgba(139,92,246,0.15), transparent 40%)",
+          filter: "blur(80px)",
           zIndex: 0,
         }}
       />
@@ -65,44 +63,70 @@ export default function Home() {
           </span>
         </motion.h1>
 
-        {/* ...rest unchanged... */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-xl md:text-2xl font-semibold text-gray-300"
         >
-          Full-Stack Developer | React, Node.js, MongoDB, Tailwind CSS
+          Java Full Stack Developer | Spring Boot • React • MySQL • Docker • AWS
         </motion.h2>
 
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-base md:text-lg text-black max-w-xl leading-relaxed"
+          className="text-base md:text-lg text-gray-200 max-w-xl leading-relaxed"
         >
-          I build high-performance, scalable, and user-friendly web applications. From responsive front-ends to efficient back-ends, I bring ideas to life with modern tools and clean, maintainable code. I focus on delivering solutions that not only meet business goals but also enhance user experience, follow industry best practices, and remain adaptable for future growth.
+          I build production-ready web applications using Spring Boot and React
+          with structured layered architecture. Experienced in developing secure
+          REST APIs with JWT authentication, implementing role-based access
+          control, containerizing services using Docker, and deploying scalable
+          systems on AWS. I focus on clean backend design, maintainable code,
+          and reliable end-to-end delivery.
         </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="space-x-4"
-        >
+        {/* Impact Stats */}
+        <div className="flex flex-wrap gap-8 pt-4">
+          <div>
+            <h3 className="text-2xl font-bold text-blue-400">1+ YOE</h3>
+            <p className="text-gray-400 text-sm">Professional Experience</p>
+          </div>
+
+          <div>
+            <h3 className="text-2xl font-bold text-blue-400">6+ Projects</h3>
+            <p className="text-gray-400 text-sm">Built & Deployed</p>
+          </div>
+
+          <div>
+            <h3 className="text-2xl font-bold text-blue-400">1 Production</h3>
+            <p className="text-gray-400 text-sm">Live Application</p>
+          </div>
+        </div>
+
+        {/* Buttons */}
+        <motion.div className="space-x-4 pt-4">
           <a
             href={resume}
             download
-            className="bg-blue-500 px-6 py-2 rounded-lg text-base font-semibold hover:bg-blue-600 transition"
+            className="bg-blue-600 px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
           >
             Download Resume
           </a>
-          <a
-            href="#contact"
-            className="bg-gray-700 px-6 py-2 rounded-lg text-base font-semibold hover:bg-gray-600 transition"
+
+          <button
+            onClick={() => navigate("/projects")}
+            className="bg-gray-700 px-6 py-2 rounded-lg font-semibold hover:bg-gray-600 transition"
           >
-            Hire me
-          </a>
+            View Projects
+          </button>
+
+          <button
+            onClick={() => navigate("/experience")}
+            className="bg-gray-800 px-6 py-2 rounded-lg font-semibold hover:bg-gray-700 transition"
+          >
+            Experience
+          </button>
         </motion.div>
       </div>
 
@@ -115,8 +139,8 @@ export default function Home() {
       >
         <img
           src={laptopImage}
-          alt="Developers at Work"
-          className="w-[300px] md:w-[420px] rounded-lg shadow-lg object-contain"
+          alt="Java Full Stack Developer Workspace"
+          className="w-[300px] md:w-[420px] rounded-xl shadow-2xl object-contain"
         />
       </motion.div>
     </section>

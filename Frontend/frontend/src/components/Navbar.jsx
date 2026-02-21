@@ -1,121 +1,96 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { scroller } from "react-scroll";
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
-import { FiMenu, FiX } from "react-icons/fi"; // icons for menu
-
-const letterAnimation = {
-  hidden: { opacity: 0, y: -20 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.05 },
-  }),
-};
+import { useState } from "react";
+import { FiMenu, FiX } from "react-icons/fi";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const menuItems = [
+  const scrollItems = [
     { name: "About", target: "about" },
     { name: "Skills", target: "skills" },
-    { name: "Education", target: "education" },
     { name: "Contact", target: "contact" },
   ];
 
-  const handleMenuClick = (target) => {
-    if (location.pathname === "/") {
-      scroller.scrollTo(target, { smooth: true, duration: 500, offset: -70 });
-    } else {
+  const routeItems = [
+    { name: "Experience", path: "/experience" },
+    { name: "Projects", path: "/projects" },
+  ];
+
+  const handleScroll = (target) => {
+    if (location.pathname !== "/") {
       navigate("/");
       setTimeout(() => {
         scroller.scrollTo(target, { smooth: true, duration: 500, offset: -70 });
       }, 400);
-    }
-    setMenuOpen(false); // close mobile menu after click
-  };
-
-  const handleLogoClick = () => {
-    if (location.pathname === "/") {
-      scroller.scrollTo("home", { smooth: true, duration: 500, offset: -70 });
     } else {
-      navigate("/");
+      scroller.scrollTo(target, { smooth: true, duration: 500, offset: -70 });
     }
+    setMenuOpen(false);
   };
 
-  // Blinking + color changing effect
-  const colors = ["#ff4d4d", "#4dff4d", "#4da6ff", "#ffff4d", "#ff66ff", "#66ffff"];
-  const [colorIndex, setColorIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setColorIndex((prev) => (prev + 1) % colors.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Mobile menu toggle
-  const [menuOpen, setMenuOpen] = useState(false);
+  const handleRoute = (path) => {
+    navigate(path);
+    setMenuOpen(false);
+  };
 
   return (
-    <nav className="flex justify-between items-center px-6 py-3 bg-gradient-to-r from-gray-900 to-gray-300 text-white sticky top-0 z-50 shadow-md">
-      {/* Left: Logo */}
-      <motion.div
-        className="text-xl font-bold flex cursor-pointer"
-        onClick={handleLogoClick}
-      >
-        {"Ritik Kumar".split("").map((char, i) => (
-          <motion.span
-            key={i}
-            custom={i}
-            variants={letterAnimation}
-            initial="hidden"
-            animate="visible"
-          >
-            {char}
-          </motion.span>
-        ))}
-      </motion.div>
+    <nav className="flex justify-between items-center px-6 py-4 bg-gray-900 text-white sticky top-0 z-50 shadow-md border-b border-gray-800">
 
-      {/* Center: Blinking Welcome Text (hidden on small screens) */}
-      <motion.div
-        style={{ color: colors[colorIndex] }}
-        animate={{ opacity: [1, 0, 1] }}
-        transition={{ duration: 5.5, repeat: Infinity }}
-        className="text-lg font-semibold hidden md:block"
+      {/* Logo */}
+      <div
+        className="text-xl font-bold text-blue-400 cursor-pointer"
+        onClick={() => navigate("/")}
       >
-        Welcome to Developer World
-      </motion.div>
+        Ritik Kumar
+      </div>
 
-      {/* Right: Menu for Desktop */}
-      <ul className="hidden md:flex space-x-6 font-medium">
-        {menuItems.map((item, i) => (
-          <motion.li
+      {/* Desktop Menu */}
+      <ul className="hidden md:flex items-center space-x-6 font-medium">
+
+        {scrollItems.map((item) => (
+          <li
             key={item.name}
-            custom={i}
-            variants={letterAnimation}
-            initial="hidden"
-            animate="visible"
-            className="hover:text-gray-300 cursor-pointer"
-            onClick={() => handleMenuClick(item.target)}
+            className="hover:text-blue-400 cursor-pointer transition"
+            onClick={() => handleScroll(item.target)}
           >
             {item.name}
-          </motion.li>
+          </li>
         ))}
-        <motion.li
-          custom={menuItems.length}
-          variants={letterAnimation}
-          initial="hidden"
-          animate="visible"
-          className="hover:text-gray-300 cursor-pointer"
-          onClick={() => navigate("/projects")}
+
+        {routeItems.map((item) => (
+          <li
+            key={item.name}
+            className="hover:text-blue-400 cursor-pointer transition"
+            onClick={() => handleRoute(item.path)}
+          >
+            {item.name}
+          </li>
+        ))}
+
+        <a
+          href="https://github.com/Ritik3615"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-300 hover:text-white text-lg"
         >
-          Projects
-        </motion.li>
+          <FaGithub />
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/developer-ritik-sharma/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-300 hover:text-white text-lg"
+        >
+          <FaLinkedin />
+        </a>
       </ul>
 
-      {/* Hamburger menu button for Mobile */}
+      {/* Mobile Toggle */}
       <button
         className="md:hidden text-2xl"
         onClick={() => setMenuOpen(!menuOpen)}
@@ -123,27 +98,49 @@ export default function Navbar() {
         {menuOpen ? <FiX /> : <FiMenu />}
       </button>
 
-      {/* Mobile Dropdown Menu */}
+      {/* Mobile Menu */}
       {menuOpen && (
-        <div className="absolute top-14 right-4 bg-gray-800 rounded-lg shadow-lg p-5 space-y-4 md:hidden">
-          {menuItems.map((item) => (
+        <div className="absolute top-16 right-4 bg-gray-800 rounded-lg shadow-lg p-6 space-y-4 md:hidden">
+
+          {scrollItems.map((item) => (
             <div
               key={item.name}
-              className="hover:text-gray-300 cursor-pointer"
-              onClick={() => handleMenuClick(item.target)}
+              className="hover:text-blue-400 cursor-pointer"
+              onClick={() => handleScroll(item.target)}
             >
               {item.name}
             </div>
           ))}
-          <div
-            className="hover:text-gray-300 cursor-pointer"
-            onClick={() => {
-              navigate("/projects");
-              setMenuOpen(false);
-            }}
-          >
-            Projects
+
+          {routeItems.map((item) => (
+            <div
+              key={item.name}
+              className="hover:text-blue-400 cursor-pointer"
+              onClick={() => handleRoute(item.path)}
+            >
+              {item.name}
+            </div>
+          ))}
+
+          <div className="flex gap-4 pt-2">
+            <a
+              href="https://github.com/Ritik3615"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-lg"
+            >
+              <FaGithub />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/developer-ritik-sharma/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-lg"
+            >
+              <FaLinkedin />
+            </a>
           </div>
+
         </div>
       )}
     </nav>
