@@ -10,6 +10,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const scrollItems = [
+    { name: "Home", target: "home" },
     { name: "About", target: "about" },
     { name: "Skills", target: "skills" },
     { name: "Contact", target: "contact" },
@@ -39,18 +40,36 @@ export default function Navbar() {
 
   return (
     <nav className="flex justify-between items-center px-6 py-4 bg-gray-900 text-white sticky top-0 z-50 shadow-md border-b border-gray-800">
-
       {/* Logo */}
+
       <div
-        className="text-xl font-bold text-blue-400 cursor-pointer"
-        onClick={() => navigate("/")}
+        className="text-xl font-bold cursor-pointer flex items-center gap-1"
+        onClick={() => {
+          if (location.pathname !== "/") {
+            navigate("/");
+            setTimeout(() => {
+              scroller.scrollTo("home", {
+                smooth: true,
+                duration: 500,
+                offset: -70,
+              });
+            }, 400);
+          } else {
+            scroller.scrollTo("home", {
+              smooth: true,
+              duration: 500,
+              offset: -70,
+            });
+          }
+        }}
       >
-        Ritik Kumar
+        <span className="text-blue-400">&lt;R</span>
+        <span className="text-white">K</span>
+        <span className="text-blue-400">/&gt;</span>
       </div>
 
       {/* Desktop Menu */}
       <ul className="hidden md:flex items-center space-x-6 font-medium">
-
         {scrollItems.map((item) => (
           <li
             key={item.name}
@@ -101,7 +120,6 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="absolute top-16 right-4 bg-gray-800 rounded-lg shadow-lg p-6 space-y-4 md:hidden">
-
           {scrollItems.map((item) => (
             <div
               key={item.name}
@@ -140,7 +158,6 @@ export default function Navbar() {
               <FaLinkedin />
             </a>
           </div>
-
         </div>
       )}
     </nav>

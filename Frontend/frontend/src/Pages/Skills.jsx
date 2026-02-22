@@ -71,14 +71,14 @@ export default function Skills() {
   ];
 
   return (
-    <section className="min-h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white px-8 py-16">
-      <div className="max-w-6xl mx-auto">
+    <section className="min-h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white px-8 py-10">
+      <div className="max-w-7xl mx-auto">
 
         <h2 className="text-4xl font-bold text-blue-400 text-center mb-12">
           Technical Stack
         </h2>
 
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {skillCategories.map((category, index) => (
             <div
               key={index}
@@ -88,11 +88,11 @@ export default function Skills() {
                 {category.title}
               </h3>
 
-              <div className="grid grid-cols-2 gap-4 text-sm">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
                 {category.skills.map((skill, i) => (
                   <div
                     key={i}
-                    className="flex items-center space-x-2 hover:scale-105 transition"
+                    className=" hover:scale-105 transition"
                   >
                     <span className="text-lg">{skill.icon}</span>
                     <span className="text-gray-300">{skill.name}</span>

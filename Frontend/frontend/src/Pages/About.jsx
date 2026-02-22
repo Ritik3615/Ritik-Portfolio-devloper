@@ -35,7 +35,7 @@ export default function About() {
   }, [index, typing]);
 
   return (
-    <section className="min-h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white px-8 flex flex-col items-center justify-center">
+    <section className="min-h-screen py-10 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white px-8 flex flex-col items-center justify-center">
 
       <motion.div
         initial={{ opacity: 0, y: 40 }}

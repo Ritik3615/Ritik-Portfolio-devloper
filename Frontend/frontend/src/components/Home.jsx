@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import laptopImage from "../assets/portfolio.png";
 import resume from "../assets/Ritik_fullstack.pdf";
@@ -9,6 +10,7 @@ export default function Home() {
   const [displayedText, setDisplayedText] = useState("");
   const [typing, setTyping] = useState(true);
   const [index, setIndex] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     let timeout;
@@ -105,7 +107,7 @@ export default function Home() {
         </div>
 
         {/* Buttons */}
-        <motion.div className="space-x-4 pt-4">
+        <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6">
           <a
             href={resume}
             download
@@ -116,14 +118,14 @@ export default function Home() {
 
           <button
             onClick={() => navigate("/projects")}
-            className="bg-gray-700 px-6 py-2 rounded-lg font-semibold hover:bg-gray-600 transition"
+            className="bg-gray-700 px-6 py-2 cursor-pointer rounded-lg font-semibold hover:bg-gray-600 transition"
           >
             View Projects
           </button>
 
           <button
             onClick={() => navigate("/experience")}
-            className="bg-gray-800 px-6 py-2 rounded-lg font-semibold hover:bg-gray-700 transition"
+            className="bg-gray-800 px-6 py-2 cursor-pointer rounded-lg font-semibold hover:bg-gray-700 transition"
           >
             Experience
           </button>
