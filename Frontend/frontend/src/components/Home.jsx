@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import laptopImage from "../assets/portfolio.png";
-import resume from "../assets/Ritik_fullstack.pdf";
+import resume from "../assets/Ritik_Kumar_Java_Developer_Resume.pdf";
 
 const fullName = "Ritik Kumar";
 
